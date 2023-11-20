@@ -1,0 +1,40 @@
+Business Understanding
+    1. Explanation of features
+    2. Hypothesis (Null and Alternate)
+    3. Analytical questions
+Data Understanding
+    1. Importation
+    2. Load Dataset
+    3. EDA
+        1. Explore data (info, duplicated, null values, describe)
+        2. Univariate, Bi-variate, Multi-variate Analysis
+    4. Answer Analytical questions
+Data Preparation
+    1. Split data set into X, y
+    2. Create a pipeline to preprocess the data
+        1. Scale
+        2. Log transformation
+    3. Encode
+    4. Split data set into training and evaluation
+    5. Check balance - Balance Data set (depending on what you see)
+Modeling & Evaluation
+    1. Train Model
+        1.Train Model 1 - K-Nearest Neighbour (Distance model)
+        2.Train Model 2 - Logistic Regression (Gradient Descent)
+        3.Train Model 3 - Decision Tree (Decision Tree)
+    2. Persit Model
+
+
+1. **Alcohol:** The alcohol content of the wine.
+2. **Malic acid:** The amount of malic acid in the wine, which can affect the taste and acidity.
+3. **Ash:** The ash content in the wine, representing the inorganic content after incineration.
+4. **Alcalinity of ash:** The alkalinity of the ash, which can influence the taste and pH of the wine.
+5. **Magnesium:** The amount of magnesium in the wine.
+6. **Total phenols:** The total amount of phenolic compounds in the wine, which contribute to its flavor and color.
+7. **Flavanoids:** The amount of flavonoids in the wine, which are responsible for various sensory attributes.
+8. **Nonflavanoid phenols:** The amount of non-flavonoid phenolic compounds in the wine.
+9. **Proanthocyanins:** The amount of proanthocyanins, a type of antioxidant, in the wine.
+10. **Color intensity:** The color intensity of the wine, which can be influenced by various compounds.
+11. **Hue:** The hue of the wine, representing the color shade.
+12. **OD280/OD315 of diluted wines:** The optical density of the wine, which is measured at two different wavelengths. It can provide information about the color.
+13. **Proline:** The amount of proline, an amino acid, in the wine.

@@ -1,1 +1,6 @@
 FastApi
+pandas
+numpy
+joblib
+logging
+scikit-learn

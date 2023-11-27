@@ -22,12 +22,16 @@ class SmartFeatures(BaseModel):
     Age: int
     Insurance: int
     Sepssis: int
+    
+@app.get('/')
+def read_root():
+    return 'predicting the sepsis infection'
 
 @app.post('/predict_infection')
 def predict_sepsis_infection(sepsis_features: SmartFeatures):
     try:
         df = pd.DataFrame([sepsis_features.dict()])
-        # Use encoder if needed
+        
         # encoded_data = encoder.transform(df)
         predict = pipeline.predict(df)[0]
         return {"Prediction": predict}
@@ -35,4 +39,4 @@ def predict_sepsis_infection(sepsis_features: SmartFeatures):
         logging.error(f"Prediction error: {str(e)}")
         raise HTTPException(status_code=500, detail="Internal Server Error")
 
-# Additional routes and functionality can be added as needed
+

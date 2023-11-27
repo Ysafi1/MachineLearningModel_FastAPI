@@ -10,9 +10,6 @@ logging.basicConfig(level=logging.DEBUG)
 pipeline = joblib.load('./dev/pipeline2.joblib')
 encoder = joblib.load('./dev/encoder.joblib')
 
-print(pipeline)
-print(encoder)
-
 app = FastAPI()
 
 class smartfeatures(BaseModel):

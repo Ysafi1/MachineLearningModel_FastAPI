@@ -12,7 +12,7 @@ encoder = joblib.load('./dev/encoder.joblib')
 app = FastAPI()
 
 class SmartFeatures(BaseModel):
-    PRG: int 
+    PRG: int
     PL: int
     PR: int
     SK: int
@@ -21,7 +21,7 @@ class SmartFeatures(BaseModel):
     BD2: float
     Age: int
     Insurance: int
-    Sepssis: object
+    Sepssis: int
 
 @app.post('/predict_infection')
 def predict_sepsis_infection(sepsis_features: SmartFeatures):

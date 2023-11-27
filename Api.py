@@ -1,8 +1,7 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
 import pandas as pd
 import joblib
-import numpy as np
 import logging
 
 logging.basicConfig(level=logging.DEBUG)
@@ -12,7 +11,7 @@ encoder = joblib.load('./dev/encoder.joblib')
 
 app = FastAPI()
 
-class smartfeatures(BaseModel):
+class SmartFeatures(BaseModel):
     PRG: int 
     PL: int
     PR: int
@@ -24,11 +23,16 @@ class smartfeatures(BaseModel):
     Insurance: int
     Sepssis: object
 
-@app.post('/predict_infec')
+@app.post('/predict_infection')
+def predict_sepsis_infection(sepsis_features: SmartFeatures):
+    try:
+        df = pd.DataFrame([sepsis_features.dict()])
+        # Use encoder if needed
+        # encoded_data = encoder.transform(df)
+        predict = pipeline.predict(df)[0]
+        return {"Prediction": predict}
+    except Exception as e:
+        logging.error(f"Prediction error: {str(e)}")
+        raise HTTPException(status_code=500, detail="Internal Server Error")
 
-def predict_sespis_infec(sepsiss_features:smartfeatures):
-    
-    df = pd.DataFrame([sepsiss_features.dict()])
-    predict = pipeline.predict(df)[0]
-
-    return {"Prediction": predict}
+# Additional routes and functionality can be added as needed

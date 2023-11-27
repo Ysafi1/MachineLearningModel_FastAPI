@@ -1,4 +1,6 @@
-FastApi
+fastApi[all]
+pydantic
+uvicorn
 pandas
 numpy
 joblib

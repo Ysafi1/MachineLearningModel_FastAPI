@@ -40,27 +40,15 @@ def read_root():
 @app.post('/predict_infection')
 def predict_sepsis_infection(sepsis_features: SmartFeatures):
     try:
-        df = pd.DataFrame([sepsis_features.dict()])
+        df = pd.DataFrame([sepsis_features.model_dump()])
         
-        # Flatten the data
-        flattened_data = df.values.flatten()
+        predict = pipeline.predict(df)[0]
+        predict_encoder = encoder.inverse_transformation([predict])[0]
+        
+        return {'prediction': predict_encoder}
 
-        # Create a new DataFrame with the flattened data and use numeric column names
-        df_for_prediction = pd.DataFrame([flattened_data], columns=[f"col_{i}" for i in range(len(flattened_data))])
-
-        # Log dimensions before prediction
-        logging.debug(f"Shape before prediction: {df_for_prediction.shape}")
-
-        # Prediction
-        predict = pipeline.predict(df_for_prediction)
-        # Log dimensions after prediction
-        logging.debug(f"Shape after prediction: {predict.shape}")
-
-        return {"Prediction": predict[0]}
-    
     except Exception as e:
-        logging.error(f"Prediction error: {str(e)}", exc_info=True)
-        raise HTTPException(status_code=500, detail="Internal Server Error")
+        raise HTTPException(status_code=500, detail="The Serve is Down")
 
 
 

@@ -6,7 +6,7 @@ import logging
 
 logging.basicConfig(level=logging.DEBUG)
 
-pipeline = joblib.load('./dev/pipeline2.joblib')
+pipeline = joblib.load('./dev/pipeline3.joblib')
 encoder = joblib.load('./dev/encoder.joblib')
 
 app = FastAPI(
@@ -29,33 +29,40 @@ class SmartFeatures(BaseModel):
     
 @app.get('/')
 def read_root():
-    return 'predicting the sepsis infection'
+    explanation = {
+        'message': "Welcome to the Sepsis Prediction App",
+        'description': "This API allows you to predict sepsis based on patient data.",
+        'usage': "Submit a POST request to /predict with patient data to make predictions.",
+        
+    }
+    return explanation
 
 @app.post('/predict_infection')
 def predict_sepsis_infection(sepsis_features: SmartFeatures):
     try:
         df = pd.DataFrame([sepsis_features.dict()])
         
-        # encoded_data = encoder.transform(df)
-        
+        # Flatten the data
         flattened_data = df.values.flatten()
-        
-        df_for_prediction = pd.DataFrame([flattened_data], columns=df.columns)
-        
+
+        # Create a new DataFrame with the flattened data and use numeric column names
+        df_for_prediction = pd.DataFrame([flattened_data], columns=[f"col_{i}" for i in range(len(flattened_data))])
+
         # Log dimensions before prediction
         logging.debug(f"Shape before prediction: {df_for_prediction.shape}")
 
-        #Prediction
-        predict = pipeline.predict(df_for_prediction.values.reshape(1, -1))
-        
+        # Prediction
+        predict = pipeline.predict(df_for_prediction)
         # Log dimensions after prediction
         logging.debug(f"Shape after prediction: {predict.shape}")
-        
+
         return {"Prediction": predict[0]}
     
     except Exception as e:
-        logging.error(f"Prediction error: {str(e)}")
+        logging.error(f"Prediction error: {str(e)}", exc_info=True)
         raise HTTPException(status_code=500, detail="Internal Server Error")
 
-# Additional routes and functionality can be added as needed
 
+
+    
+    

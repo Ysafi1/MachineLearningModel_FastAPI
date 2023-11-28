@@ -1,4 +1,5 @@
 infec
+./src/app
 renvir
 ./dev/paitients_files_Test.csv
 ./dev/Paitients_Files_Train.csv

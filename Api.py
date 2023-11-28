@@ -10,8 +10,7 @@ pipeline = joblib.load('./dev/pipeline3.joblib')
 encoder = joblib.load('./dev/encoder.joblib')
 
 app = FastAPI(
-    title= "Sepsis Analysis",
-    description= "This App Is For Sepsis Analysis"
+    title= "Sepsis Analysis"
 )
 
 # Input Features
@@ -25,7 +24,7 @@ class SmartFeatures(BaseModel):
     BD2: float
     Age: int
     Insurance: int
-    #Sepssis: object
+    Sepssis: object
     
 @app.get('/')
 def read_root():
@@ -37,7 +36,7 @@ def read_root():
     }
     return explanation
 
-@app.post('/predict_infection')
+@app.post('/predict_Sepsiss')
 def predict_sepsis_infection(sepsis_features: SmartFeatures):
     try:
         df = pd.DataFrame([sepsis_features.model_dump()])

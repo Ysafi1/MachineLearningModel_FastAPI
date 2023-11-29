@@ -24,7 +24,7 @@ class SmartFeatures(BaseModel):
     BD2: float
     Age: int
     Insurance: int
-    Sepssis: object
+    #Sepssis: object
     
 @app.get('/')
 def read_root():
@@ -48,8 +48,8 @@ def predict_sepsis_infection(sepsis_features: SmartFeatures):
 
     except Exception as e:
         raise HTTPException(status_code=500, detail="The Serve is Down")
-
-
-
     
+    
+    
+#if __name__ == '__Api__':
     

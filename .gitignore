@@ -1,4 +1,5 @@
 infec
+__pycache__
 ./src/app
 renvir
 ./dev/paitients_files_Test.csv

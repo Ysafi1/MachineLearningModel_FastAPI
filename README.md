@@ -49,6 +49,7 @@ In this Project, we aim to work smoothly with the following objectives
 |------------|----------|
 | *GitHub*  | https://github.com/Ysafi1/MachineLearningModel_FastAPI.git |
 | *Article* | https://www.linkedin.com/posts/safi-kabanda-2a043a168_embedding-a-machine-learning-model-in-a-activity-7140058136874303488-l_Ev?utm_source=share&utm_medium=member_desktop |
+| *Docker* | https://hub.docker.com/repository/docker/kabanda18/sepsis_analy_api/general |
 
 ###### **Recommendations**
 

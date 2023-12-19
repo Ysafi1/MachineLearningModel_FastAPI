@@ -2,8 +2,7 @@ infec
 __pycache__
 ./src/app
 renvir
-./dev/paitients_files_Test.csv
-./dev/Paitients_Files_Train.csv
-./dev/pipeline3.joblib
+main.ipynb
 sepsis
+dev\main.ipynb
 sepsis/Lib/site-packages
